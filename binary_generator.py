@@ -43,7 +43,19 @@ raw_code += tmp
 if DEBUG: print raw_code
 
 # Now, find and replace the relevant code inside of AeroQuad.h using regex search/replace
-for line in fileinput.input("test.txt", inplace=True):
-	line = re.sub('GPS_INVALID_POSITION','hello!',line.rstrip())
-	print "Line: " + line
+#for line in fileinput.input("test.txt", inplace=True):
+#	if "GeodeticPosition waypoint[" in line:
+#		line = raw_code
+#		print line
+#	else:
+#		print line.strip()
+	#line = re.sub('GPS_INVALID_POSITION','hello!',line.rstrip())
+	#print "Line: " + line
 
+#with open("test.txt", 'rw') as f:
+#	print "--begin file--"
+#	f_str = f.read()
+#	print f_str
+#	print "--end file--"
+#
+#	f_str.index("

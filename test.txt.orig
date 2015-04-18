@@ -1,14 +1,23 @@
-this is a test file
-abcdefg
-this is a test file abcdefg
 
+  #if defined UseGPSNavigator
+    byte navigationState = OFF;  // ON, OFF or ALTPANIC
+    byte positionHoldState = OFF;  // ON, OFF or ALTPANIC
+
+    int missionNbPoint = 0;
+    int gpsRollAxisCorrection = 0;
+    int gpsPitchAxisCorrection = 0;
+    int gpsYawAxisCorrection = 0;
+    boolean isPositionHoldInitialized = false;
+    boolean isGpsNavigationInitialized = false;
+
+    int waypointIndex = -1;    
     float distanceToDestination = 99999999.0;
-    GeodeticPosition waypoint[MAX_WAYPOINTS] = {
-      GPS_INVALID_POSITION, GPS_INVALID_POSITION, GPS_INVALID_POSITION, GPS_INVALID_POSITION,
-      GPS_INVALID_POSITION, GPS_INVALID_POSITION, GPS_INVALID_POSITION, GPS_INVALID_POSITION,
-      GPS_INVALID_POSITION, GPS_INVALID_POSITION, GPS_INVALID_POSITION, GPS_INVALID_POSITION,
-      GPS_INVALID_POSITION, GPS_INVALID_POSITION, GPS_INVALID_POSITION, GPS_INVALID_POSITION
-    };
 
+    GeodeticPosition waypoint[MAX_WAYPOINTS] = {GPS_INVALID_POSITION, GPS_INVALID_POSITION, GPS_INVALID_POSITION, GPS_INVALID_POSITION,GPS_INVALID_POSITION, GPS_INVALID_POSITION, GPS_INVALID_POSITION, GPS_INVALID_POSITION,GPS_INVALID_POSITION, GPS_INVALID_POSITION, GPS_INVALID_POSITION, GPS_INVALID_POSITION,GPS_INVALID_POSITION, GPS_INVALID_POSITION, GPS_INVALID_POSITION, GPS_INVALID_POSITION};
+      
+    GeodeticPosition positionHoldPointToReach = GPS_INVALID_POSITION;
+    
+    void evaluateMissionPositionToReach();
+    void processGpsNavigation();
+  #endif
 
-other stuff

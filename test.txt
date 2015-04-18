@@ -1,0 +1,14 @@
+Line: this is a test file
+Line: abcdefg
+Line: this is a test file abcdefg
+Line: 
+Line:     float distanceToDestination = 99999999.0;
+Line:     GeodeticPosition waypoint[MAX_WAYPOINTS] = {
+Line:       hello!, hello!, hello!, hello!,
+Line:       hello!, hello!, hello!, hello!,
+Line:       hello!, hello!, hello!, hello!,
+Line:       hello!, hello!, hello!, hello!
+Line:     };
+Line: 
+Line: 
+Line: other stuff

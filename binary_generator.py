@@ -25,21 +25,23 @@ with open(sys.argv[1], 'r') as infile:
 
 # Go through lat_long_arr and generate raw code to insert into AeroQuad.h
 # First, create a new GeodeticPosition variable for each waypoint in the input file
-raw_code = '\n'
+raw_code = "\tGeodeticPosition waypoint[" + str(len(lat_long_arr)) + "] = {"
 for index,coord in enumerate(lat_long_arr):
-	raw_code += "\tGeodeticPosition wp" + str(index) + " = new GeodeticPosition(" + str(coord[0]) + ", " + str(coord[1]) + ", " + str(coord[2]) + ");\n" 
-raw_code += '\n'
+	raw_code += "new GeodeticPosition(" + str(coord[0]) + ", " + str(coord[1]) + ", " + str(coord[2]) + ")" 
+	if index != len(lat_long_arr) -1:
+		raw_code += ", "	
+raw_code += "};\n\n"
 
 # Now, add all the GeodeticPosition variables to the waypoint array
-raw_code += "\tGeodeticPosition waypoint[" + str(len(lat_long_arr)) + "] = {\n"
-tmp = '\t\t'
-for i in range(len(lat_long_arr)):
-	tmp += "wp" + str(i)
-	if i < len(lat_long_arr) -1:
-		tmp += ", "
+#raw_code += "\tGeodeticPosition waypoint[" + str(len(lat_long_arr)) + "] = {\n"
+#tmp = '\t\t'
+#for i in range(len(lat_long_arr)):
+#	tmp += "wp" + str(i)
+#	if i < len(lat_long_arr) -1:
+#		tmp += ", "
 
-tmp += "\n\t};\n"
-raw_code += tmp
+#tmp += "\n\t};\n"
+#raw_code += tmp
 if DEBUG: print raw_code
 
 # Now, find and replace the relevant code inside of AeroQuad.h using regex search/replace

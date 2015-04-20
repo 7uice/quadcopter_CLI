@@ -1,6 +1,6 @@
 #!/usr/bin/env python2
 
-import sys, fileinput, re
+import sys, fileinput, re, os
 
 #struct GeodeticPosition {
 #  long latitude;
@@ -8,7 +8,7 @@ import sys, fileinput, re
 #  long altitude;
 #};
 
-DEBUG = True
+DEBUG = False
 
 # Go through input file and grab all specified coordinates => lat_long_arr
 lat_long_arr = []
@@ -32,32 +32,21 @@ for index,coord in enumerate(lat_long_arr):
 		raw_code += ", "	
 raw_code += "};\n\n"
 
-# Now, add all the GeodeticPosition variables to the waypoint array
-#raw_code += "\tGeodeticPosition waypoint[" + str(len(lat_long_arr)) + "] = {\n"
-#tmp = '\t\t'
-#for i in range(len(lat_long_arr)):
-#	tmp += "wp" + str(i)
-#	if i < len(lat_long_arr) -1:
-#		tmp += ", "
-
-#tmp += "\n\t};\n"
-#raw_code += tmp
 if DEBUG: print raw_code
 
-# Now, find and replace the relevant code inside of AeroQuad.h using regex search/replace
-#for line in fileinput.input("test.txt", inplace=True):
-#	if "GeodeticPosition waypoint[" in line:
-#		line = raw_code
-#		print line
-#	else:
-#		print line.strip()
-	#line = re.sub('GPS_INVALID_POSITION','hello!',line.rstrip())
-	#print "Line: " + line
+# Reset AeroQuad.h bc too lazy to do this any other way
+if os.path.exists("AeroQuad.h.orig"):
+	os.system("cp AeroQuad.h.orig AeroQuad.h")
 
-#with open("test.txt", 'rw') as f:
-#	print "--begin file--"
-#	f_str = f.read()
-#	print f_str
-#	print "--end file--"
-#
-#	f_str.index("
+# Now, find and replace the relevant code inside of AeroQuad.h using regex search/replace
+for line in fileinput.input("AeroQuad.h", inplace=True):
+	if "GeodeticPosition waypoint[" in line:
+		line = raw_code
+		print line
+	else:
+		print line.strip()
+
+# Now attempt to make the code
+os.system("make -C Libmaple/libmaple library")
+os.system("make -C BuildAQ32")
+print "Binary should be located at /BuildAQ32/objSTM32/AeroQuad32/AeroQuadMain.bin"

@@ -1,23 +1,25 @@
 
-  #if defined UseGPSNavigator
-    byte navigationState = OFF;  // ON, OFF or ALTPANIC
-    byte positionHoldState = OFF;  // ON, OFF or ALTPANIC
+#if defined UseGPSNavigator
+byte navigationState = OFF;  // ON, OFF or ALTPANIC
+byte positionHoldState = OFF;  // ON, OFF or ALTPANIC
 
-    int missionNbPoint = 0;
-    int gpsRollAxisCorrection = 0;
-    int gpsPitchAxisCorrection = 0;
-    int gpsYawAxisCorrection = 0;
-    boolean isPositionHoldInitialized = false;
-    boolean isGpsNavigationInitialized = false;
+int missionNbPoint = 0;
+int gpsRollAxisCorrection = 0;
+int gpsPitchAxisCorrection = 0;
+int gpsYawAxisCorrection = 0;
+boolean isPositionHoldInitialized = false;
+boolean isGpsNavigationInitialized = false;
 
-    int waypointIndex = -1;    
-    float distanceToDestination = 99999999.0;
+int waypointIndex = -1;
+float distanceToDestination = 99999999.0;
 
-    GeodeticPosition waypoint[MAX_WAYPOINTS] = {GPS_INVALID_POSITION, GPS_INVALID_POSITION, GPS_INVALID_POSITION, GPS_INVALID_POSITION,GPS_INVALID_POSITION, GPS_INVALID_POSITION, GPS_INVALID_POSITION, GPS_INVALID_POSITION,GPS_INVALID_POSITION, GPS_INVALID_POSITION, GPS_INVALID_POSITION, GPS_INVALID_POSITION,GPS_INVALID_POSITION, GPS_INVALID_POSITION, GPS_INVALID_POSITION, GPS_INVALID_POSITION};
-      
-    GeodeticPosition positionHoldPointToReach = GPS_INVALID_POSITION;
-    
-    void evaluateMissionPositionToReach();
-    void processGpsNavigation();
-  #endif
+	GeodeticPosition waypoint[4] = {new GeodeticPosition(30.279504, -97.742756, 0), new GeodeticPosition(30.279413, -97.741284, 0), new GeodeticPosition(30.278542, -97.741606, 0), new GeodeticPosition(30.278866, -97.742625, 0)};
+
+
+
+GeodeticPosition positionHoldPointToReach = GPS_INVALID_POSITION;
+
+void evaluateMissionPositionToReach();
+void processGpsNavigation();
+#endif
 
